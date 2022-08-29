@@ -43,7 +43,7 @@ namespace Mani.DB.maniAppStart
                 entity.Property(e => e.요리id).HasColumnName("요리ID");
 
                 entity.HasOne(d => d.요리)
-                    .WithMany(p => p.관련내용s)
+                    .WithMany(p => p.관련내용)
                     .HasForeignKey(d => d.요리id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_관련내용_요리");
@@ -77,13 +77,13 @@ namespace Mani.DB.maniAppStart
                 entity.Property(e => e.메모).HasMaxLength(200);
 
                 entity.HasOne(d => d.요리)
-                    .WithMany(p => p.요리재료s)
+                    .WithMany(p => p.요리재료)
                     .HasForeignKey(d => d.요리id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_요리재료_요리");
 
                 entity.HasOne(d => d.재료)
-                    .WithMany(p => p.요리재료s)
+                    .WithMany(p => p.요리재료)
                     .HasForeignKey(d => d.재료id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_요리재료_재료목록");
