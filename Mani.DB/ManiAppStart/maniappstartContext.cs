@@ -16,10 +16,10 @@ namespace Mani.DB.maniAppStart
         {
         }
 
-        public virtual DbSet<관련내용> 관련내용s { get; set; } = null!;
-        public virtual DbSet<요리> 요리s { get; set; } = null!;
-        public virtual DbSet<요리재료> 요리재료s { get; set; } = null!;
-        public virtual DbSet<재료목록> 재료목록s { get; set; } = null!;
+        public virtual DbSet<관련내용> 관련내용 { get; set; } = null!;
+        public virtual DbSet<요리> 요리 { get; set; } = null!;
+        public virtual DbSet<요리재료> 요리재료 { get; set; } = null!;
+        public virtual DbSet<재료목록> 재료목록 { get; set; } = null!;
 
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
