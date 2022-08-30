@@ -21,6 +21,8 @@ namespace Mani.DB.ManiAppStart
         public virtual DbSet<요리> 요리S { get; set; } = null!;
         public virtual DbSet<요리재료> 요리재료S { get; set; } = null!;
         public virtual DbSet<재료목록> 재료목록S { get; set; } = null!;
+        public virtual DbSet<추가HTML내용> 추가HTML내용S { get; set; } = null!;
+        public virtual DbSet<해쉬태그> 해쉬태그S { get; set; } = null!;
 
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
@@ -54,9 +56,7 @@ namespace Mani.DB.ManiAppStart
             {
                 entity.ToTable("레시피");
 
-                entity.Property(e => e.ID)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.ID).HasColumnName("ID");
 
                 entity.Property(e => e.구분)
                     .HasMaxLength(10)
@@ -120,6 +120,34 @@ namespace Mani.DB.ManiAppStart
                 entity.Property(e => e.단위).HasMaxLength(10);
 
                 entity.Property(e => e.재료명).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<추가HTML내용>(entity =>
+            {
+                entity.ToTable("추가HTML내용");
+
+                entity.Property(e => e.ID).HasColumnName("ID");
+
+                entity.Property(e => e.분류).HasMaxLength(20);
+
+                entity.Property(e => e.제목).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<해쉬태그>(entity =>
+            {
+                entity.ToTable("해쉬태그");
+
+                entity.Property(e => e.ID).HasColumnName("ID");
+
+                entity.Property(e => e.HTMLID).HasColumnName("HTMLID");
+
+                entity.Property(e => e.태그내용).HasMaxLength(50);
+
+                entity.HasOne(d => d.HTML)
+                    .WithMany(p => p.해쉬태그S)
+                    .HasForeignKey(d => d.HTMLID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_해쉬태그_추가HTML내용");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -13,6 +13,7 @@ Install-package Microsoft.EntityFrameworkCore.Tools
 ==> DB Scaffolding 명령어. 패키지관리자 콘솔에서 실행.
 	Scaffold-DbContext -connection "Server=서버이름;Database=디비이름;User ID=유저ID;Password=비밀번호" -provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir DB명 -verbose
 
+Scaffold-DbContext -connection "Server=ins002com\sql2014;Database=ManiAppStart;User ID=sa;Password=1234" -provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir ManiAppStart -f
 
 3==>디비명Context.cs 파일에 다음 부분을 주석처리하기.
 //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
