@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Mani.DB.maniAppStart
+namespace Mani.DB.ManiAppStart
 {
     public partial class 재료목록
     {
         public 재료목록()
         {
-            요리재료 = new HashSet<요리재료>();
+            요리재료S = new HashSet<요리재료>();
         }
 
         public int Id { get; set; }
@@ -18,6 +18,6 @@ namespace Mani.DB.maniAppStart
         public double 남은수 { get; set; }
         public bool 구매요망 { get; set; }
 
-        public virtual ICollection<요리재료> 요리재료 { get; set; }
+        public virtual ICollection<요리재료> 요리재료S { get; set; }
     }
 }

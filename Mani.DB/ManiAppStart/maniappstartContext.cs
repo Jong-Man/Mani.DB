@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Mani.DB.maniAppStart
+namespace Mani.DB.ManiAppStart
 {
     public partial class ManiAppStartContext : DbContext
     {
@@ -16,19 +16,20 @@ namespace Mani.DB.maniAppStart
         {
         }
 
-        public virtual DbSet<관련내용> 관련내용 { get; set; } = null!;
-        public virtual DbSet<요리> 요리 { get; set; } = null!;
-        public virtual DbSet<요리재료> 요리재료 { get; set; } = null!;
-        public virtual DbSet<재료목록> 재료목록 { get; set; } = null!;
+        public virtual DbSet<관련내용> 관련내용S { get; set; } = null!;
+        public virtual DbSet<레시피> 레시피S { get; set; } = null!;
+        public virtual DbSet<요리> 요리S { get; set; } = null!;
+        public virtual DbSet<요리재료> 요리재료S { get; set; } = null!;
+        public virtual DbSet<재료목록> 재료목록S { get; set; } = null!;
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Server=ins002Com\\sql2014;Database=ManiAppStart;User ID=sa;Password=1234");
-//            }
-//        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=ins002com\\sql2014;Database=ManiAppStart;User ID=sa;Password=1234");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,10 +44,31 @@ namespace Mani.DB.maniAppStart
                 entity.Property(e => e.요리id).HasColumnName("요리ID");
 
                 entity.HasOne(d => d.요리)
-                    .WithMany(p => p.관련내용)
+                    .WithMany(p => p.관련내용S)
                     .HasForeignKey(d => d.요리id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_관련내용_요리");
+            });
+
+            modelBuilder.Entity<레시피>(entity =>
+            {
+                entity.ToTable("레시피");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.구분)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.요리id).HasColumnName("요리ID");
+
+                entity.HasOne(d => d.요리)
+                    .WithMany(p => p.레시피S)
+                    .HasForeignKey(d => d.요리id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_레시피_요리");
             });
 
             modelBuilder.Entity<요리>(entity =>
@@ -77,13 +99,13 @@ namespace Mani.DB.maniAppStart
                 entity.Property(e => e.메모).HasMaxLength(200);
 
                 entity.HasOne(d => d.요리)
-                    .WithMany(p => p.요리재료)
+                    .WithMany(p => p.요리재료S)
                     .HasForeignKey(d => d.요리id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_요리재료_요리");
 
                 entity.HasOne(d => d.재료)
-                    .WithMany(p => p.요리재료)
+                    .WithMany(p => p.요리재료S)
                     .HasForeignKey(d => d.재료id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_요리재료_재료목록");

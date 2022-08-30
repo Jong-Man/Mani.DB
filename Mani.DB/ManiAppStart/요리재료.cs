@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Mani.DB.maniAppStart
+namespace Mani.DB.ManiAppStart
 {
     public partial class 요리재료
     {
