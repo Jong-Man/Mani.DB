@@ -10,7 +10,7 @@ namespace Mani.DB.ManiAppStart
             요리재료S = new HashSet<요리재료>();
         }
 
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string 재료명 { get; set; } = null!;
         public string 단위 { get; set; } = null!;
         public int 중요도 { get; set; }
