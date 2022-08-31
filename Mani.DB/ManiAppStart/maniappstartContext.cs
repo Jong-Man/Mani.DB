@@ -120,6 +120,8 @@ namespace Mani.DB.ManiAppStart
                 entity.Property(e => e.단위).HasMaxLength(10);
 
                 entity.Property(e => e.재료명).HasMaxLength(100);
+
+                entity.Property(e => e.분류).HasMaxLength(20);
             });
 
             modelBuilder.Entity<추가HTML내용>(entity =>

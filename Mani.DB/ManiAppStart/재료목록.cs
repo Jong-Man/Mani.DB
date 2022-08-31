@@ -11,6 +11,7 @@ namespace Mani.DB.ManiAppStart
         }
 
         public int ID { get; set; }
+        public string 분류 { get; set; } = null!;
         public string 재료명 { get; set; } = null!;
         public string 단위 { get; set; } = null!;
         public int 중요도 { get; set; }
