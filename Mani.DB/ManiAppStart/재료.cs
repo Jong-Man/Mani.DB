@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Mani.DB.ManiAppStart
 {
-    public partial class 재료목록
+    public partial class 재료
     {
-        public 재료목록()
+        public 재료()
         {
             요리재료S = new HashSet<요리재료>();
         }

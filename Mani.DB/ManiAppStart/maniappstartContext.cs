@@ -20,7 +20,7 @@ namespace Mani.DB.ManiAppStart
         public virtual DbSet<레시피> 레시피S { get; set; } = null!;
         public virtual DbSet<요리> 요리S { get; set; } = null!;
         public virtual DbSet<요리재료> 요리재료S { get; set; } = null!;
-        public virtual DbSet<재료목록> 재료목록S { get; set; } = null!;
+        public virtual DbSet<재료> 재료S { get; set; } = null!;
         public virtual DbSet<추가HTML내용> 추가HTML내용S { get; set; } = null!;
         public virtual DbSet<해쉬태그> 해쉬태그S { get; set; } = null!;
 
@@ -111,9 +111,9 @@ namespace Mani.DB.ManiAppStart
                     .HasConstraintName("FK_요리재료_재료목록");
             });
 
-            modelBuilder.Entity<재료목록>(entity =>
+            modelBuilder.Entity<재료>(entity =>
             {
-                entity.ToTable("재료목록");
+                entity.ToTable("재료");
 
                 entity.Property(e => e.ID).HasColumnName("ID");
 

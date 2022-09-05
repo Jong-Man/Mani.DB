@@ -13,6 +13,6 @@ namespace Mani.DB.ManiAppStart
         public bool 필수 { get; set; }
 
         public virtual 요리 요리 { get; set; } = null!;
-        public virtual 재료목록 재료 { get; set; } = null!;
+        public virtual 재료 재료 { get; set; } = null!;
     }
 }
